@@ -1,0 +1,21 @@
+
+
+0
+-4 -3 -1 -1 1 3 4
+
+-1, 0, 1, 2, -1, -4
+
+-2, 0, 1, 3
+
+
+
+System.OverflowException: Negating the minimum value of a twos complement number is invalid.
+Line 0: System.Math.Abs (System.Int32 value) in <a1ae6166591d4020b810288d19af38d4>
+Line 19: Solution.ThreeSumClosest (System.Int32[] nums, System.Int32 target) in Solution.cs
+Line 18: __DriverSolution__.__Helper__ (System.Int32[] param_1, System.Int32 param_2) in __Driver__.cs
+Line 35: __Driver__.Main (System.String[] args) in __Driver__.cs
+[ERROR] FATAL UNHANDLED EXCEPTION: System.OverflowException: Negating the minimum value of a twos complement number is invalid.
+Line 0: System.Math.Abs (System.Int32 value) in <a1ae6166591d4020b810288d19af38d4>
+Line 19: Solution.ThreeSumClosest (System.Int32[] nums, System.Int32 target) in Solution.cs
+Line 18: __DriverSolution__.__Helper__ (System.Int32[] param_1, System.Int32 param_2) in __Driver__.cs
+Line 35: __Driver__.Main (System.String[] args) in __Driver__.cs

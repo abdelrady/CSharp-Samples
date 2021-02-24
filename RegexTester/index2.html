@@ -1,0 +1,78 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var patt =
+            /((([A-Za-z]{3,9}:(?:\/\/)?)?(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(:[0-9]+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
+        var isWebAddress = false, isPhone = false;
+        var _isWebsite = function (urlToValidate) {
+            //var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,7}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+            var expression = /((([A-Za-z]{3,9}:(?:\/\/)?)?(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(:[0-9]+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
+            var regex = new RegExp(expression);
+            if (regex.test(urlToValidate)) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+        var _isPhone = function (val) {
+            return /^(?:\+\d{1,3})?\(?[0-9].*/.test(val);
+        };
+
+        $(document).ready(function () {
+            $.getJSON("data.json",
+                function (data) {
+                    var items = [];
+                    $.each(data,
+                        function (key, val) {
+                            //isWebAddress = _isWebsite(val.Addr);
+                            isPhone = _isPhone(val.Addr);
+                            if (isPhone)
+                                items.push("<tr><td style='width: 20%'>" +
+                                    val.Id +
+                                    "</td><td style='width: 40%'>" +
+                                    val.Addr +
+                                    "</td><td style='width: 10%'>" +
+                                    isPhone +
+                                    "</td></tr>");
+                        });
+                    alert('done');
+                    //        $("#results tbody").append(items);
+                    //    });
+                    //$.getJSON("phones.json",
+                    //    function (data) {
+                    //        var items = [];
+                    //        $.each(data,
+                    //            function (key, val) {
+                    //                isPhone = /^(?:\+\d{1,3})?\(?[0-9].*/.test(val.PhoneNUmber);
+                    //                if (!isPhone)
+                    //                    items.push("<tr><td style='width: 20%'>" +
+                    //                        val.PhoneId +
+                    //                        "</td><td style='width: 40%'>" +
+                    //                        val.PhoneNumber +
+                    //                        "</td><td style='width: 10%'>" +
+                    //                        isPhone+
+                    //                        "</td></tr>");
+                    //            });
+                    //        $("#results tbody").append(items);
+
+                });
+        });
+            //var res = patt.test(str);
+    </script>
+</head>
+<body>
+    <table id="results" style="width: 50%">
+        <thead>
+            <tr>
+                <th style="width: 20%">Id</th>
+                <th style="width: 40%">Address</th>
+                <th style="width: 10%">Result</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+</html>
